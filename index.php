@@ -11,6 +11,8 @@
         
     </style>
     <body>
+
+        <!-- container saying its the robots side -->
         <div class="container">
             <div class="row">
                 <div class="col-sm-5"></div>
@@ -21,24 +23,25 @@
             </div>
         </div>
 
+        <!-- container that shows the possible choices for the bot and rotate to make sure they face the right way -->
         <div class="container" id="botsidehand">
             <div class="row">
                 <div class="col-sm-3">
                 </div>
                 <div class="col-sm-2">
                     <div id="botRock">
-                        <img src="rock.png" alt="Girl in a jacket" width="100%" height="100%" style="transform: rotate(90deg);">
+                        <img src="rock.png" alt="Rock" width="100%" height="100%" style="transform: rotate(90deg);">
                     </div>
                 </div>
 
                 <div class="col-sm-2">
                     <div id="botPaper">
-                        <img src="paper.png" alt="Girl in a jacket" width="100%" height="100%" style="transform: rotate(180deg);">
+                        <img src="paper.png" alt="Paper" width="100%" height="100%" style="transform: rotate(180deg);">
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div id="botScissors">
-                        <img src="scissor.png" alt="Girl in a jacket" width="100%" height="100%" style="transform: rotate(90deg);">
+                        <img src="scissor.png" alt="Scissor" width="100%" height="100%" style="transform: rotate(90deg);">
                     </div>
                 </div>
 
@@ -47,19 +50,21 @@
             </div>
         </div>
 
+        <!-- container with bots choice-->
         <div class="container" id="botsidehand" >
             <div class="row">
                 <div class="col-sm-5"></div>
 
                 <div class="col-sm-2">
                     <div id="botchosen" style="visibility:hidden">
-                        <img id="botchoseimg" src="rock.png" alt="Girl in a jacket" width="100%" height="100%" style="transform: rotate(180deg);">
+                        <img id="botchoseimg" src="rock.png" alt="Bot chosen" width="100%" height="100%" style="transform: rotate(180deg);">
                     </div>
                 </div>
                 <div class="col-sm-2"></div>
             </div>
         </div>
 
+        <!-- Container that will show the result of the game-->
         <div class="container" id="winnertextbox">
             <div class="row">
                 <div class="col-sm-5"></div>
@@ -73,19 +78,22 @@
             </div>
         </div>
 
+
+        <!-- Container with the users choice-->        
         <div class="container" id="usersidehand">
             <div class="row">
                 <div class="col-sm-5"></div>
 
                 <div class="col-sm-2">
                     <div id="userchosen" style="visibility:hidden">
-                        <img id="userchoseimg" src="rock.png" alt="Girl in a jacket" width="100%" height="100%">
+                        <img id="userchoseimg" src="rock.png" alt="User chosen" width="100%" height="100%">
                     </div>
                 </div>
                 <div class="col-sm-2"></div>
             </div>
         </div>
 
+        <!-- Container with possible choices for user that can be clicked-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
@@ -93,18 +101,18 @@
 
                 <div class="col-sm-2">
                     <div id="Rock">
-                        <img src="rock.png" alt="Girl in a jacket" width="100%" height="100%" style="transform: rotate(260deg);">
+                        <img src="rock.png" alt="Rock" width="100%" height="100%" style="transform: rotate(260deg);">
                     </div>
                 </div>
 
                 <div class="col-sm-2">
                     <div id="Paper">
-                        <img src="paper.png" alt="Girl in a jacket" width="100%" height="100%" >
+                        <img src="paper.png" alt="paper" width="100%" height="100%" >
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div id="Scissors">
-                        <img src="scissor.png" alt="Girl in a jacket" width="100%" height="100%" style="transform: rotate(280deg);">
+                        <img src="scissor.png" alt="Scissors" width="100%" height="100%" style="transform: rotate(280deg);">
                     </div>
                 </div>
 
@@ -113,6 +121,7 @@
             </div>
         </div>
         
+        <!-- Container saying that this is the users side -->
         <div class="container">
             <div class="row">
                 <div class="col-sm-5"></div>
@@ -123,6 +132,7 @@
             </div>
         </div>
 
+        <!-- container with open that will open the modal window with scoreboards-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-4"></div>
@@ -156,9 +166,11 @@
         </div>
     </body>
     <script>
+
         var tie = 0;
         var win = 0;
         var lose = 0;
+
         function randomint(){ //assign the random value for the bot
             return Math.floor(Math.random() * 3) + 1;
         }
@@ -183,17 +195,21 @@
                 $("#winnertext").text("Congrats on winning");
                 win++;
             }
+
+            //update the scoreboard text
             $("#tienumber").text("Number of ties: " + tie);
             $("#winnumber").text("Number of times user won: " + win);
             $("#losenumber").text("Number of times user lost: " + lose);            
         }
 
-        function showbotchouse(botval){
+        function showbotchouse(botval){//show what bot chose by making image variable and rotating it so its correct direction
+
             if(botval == 1){
                 $("#botchose").text("Bot chose Rock");
                 $("#botchosen").css("visibility", "");
                 document.getElementById("botchoseimg").src="rock.png";
                 $("#botchoseimg").css("transform", "rotate(90deg)");
+
             }else if(botval == 2){
                 $("#botchose").text("Bot chose Paper");
                 $("#botchosen").css("visibility", "");
@@ -208,30 +224,28 @@
 
             }
         }
-        $( "#Rock" ).on( "click", function() {
+
+        $( "#Rock" ).on( "click", function() { //if user chooses rock it will change the image to rock and rotate it to the correct position and select a random value for the bot hand
             const robotnum = randomint();
             const user = 1;
-            $("#userchose").text("You chose Rock");
             $("#userchosen").css("visibility", "");
             document.getElementById("userchoseimg").src="rock.png";
             $("#userchoseimg").css("transform", "rotate(260deg)");
             playgame(robotnum,user);
         } );
 
-        $( "#Paper" ).on( "click", function() {
+        $( "#Paper" ).on( "click", function() { //if user chooses paper it will change the image to paper and rotate it to the correct position and select a random value for the bot hand
             const robotnum = randomint();
             const user = 2;
-            $("#userchose").text("You chose Paper");
             $("#userchosen").css("visibility", "");
             document.getElementById("userchoseimg").src="paper.png";
             $("#userchoseimg").css("transform", "rotate(0deg)");
             playgame(robotnum,user);
         } );
 
-        $( "#Scissors" ).on( "click", function() {
+        $( "#Scissors" ).on( "click", function() { //if user chooses scissor it will change the image to scissor and rotate it to the correct position and select a random value for the bot hand
             const robotnum = randomint();
             const user = 3;
-            $("#userchose").text("You chose Scissors");
             $("#userchosen").css("visibility", "");
             document.getElementById("userchoseimg").src="scissor.png";
             $("#userchoseimg").css("transform", "rotate(280deg)");
